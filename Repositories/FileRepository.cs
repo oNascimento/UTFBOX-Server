@@ -34,7 +34,9 @@ namespace UTFBox_Server.Repositories
             }
 
             user = _users.Where(u => u.UserName == user.UserName).FirstOrDefault();
-            revisions.AddRange(user.SharedFolderFiles);
+            
+            if(!user.SharedFolderFiles.Equals(null))
+                revisions.AddRange(user.SharedFolderFiles);
 
             return revisions;
         }
