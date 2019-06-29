@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
@@ -41,12 +42,15 @@ namespace UTFBox_Server.Controllers
             
             await _hubContext.Clients.All.SendAsync(revision.userName + 
                             " iniciou uma transferencia de arquivo: " + revision.fileName);
-
-            if(!revision.fileData.Equals(null))
-                await System.IO.File.WriteAllBytesAsync(path, revision.fileData);
-            else
-                return BadRequest();
             
+            try{
+                var encodedBytes = Convert.FromBase64String(
+                    Convert.ToBase64String(System.Text.Encoding.Unicode.GetBytes(revision.fileData)));
+                await System.IO.File.WriteAllBytesAsync(path, encodedBytes);
+            }catch(Exception e){
+                return BadRequest("Não foi possivel criar seu arquivo, seu animal");
+            }
+
             revision.LastModificationDate = DateTime.Now;
             await _repo.AddToRepository(revision);
             await _hubContext.Clients.All.SendAsync("Transferencia finalizada: " + revision.fileName);

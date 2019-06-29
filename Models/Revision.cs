@@ -9,7 +9,7 @@ namespace UTFBox_Server.Models
     {
         public string fileName;
         public string userName;
-        public byte[] fileData = null;
+        public string fileData = null;
         public bool isPublic = false;
         public DateTime LastModificationDate;
 
