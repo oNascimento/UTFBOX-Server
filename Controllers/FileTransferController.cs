@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -11,24 +13,29 @@ namespace UTFBox_Server.Controllers
     [Route("Transfer")]
     public class FileTransferController : Controller
     {
-        const string _repository = "./Repository";
         private readonly IHubContext<ServerHub> _hubContext;
         public FileTransferController(IHubContext<ServerHub> hubContext)
         {
             _hubContext = hubContext;
+        }
+        
+        [HttpGet]
+        [Route("GetAll")]
+        public async Task<List<Revision>> GetAll(User user)
+        {
+            var response = new List<Revision>();
+
+            
+
+            await Task.Yield();
+            return response;
         }
 
         [HttpPost]
         [Route("Send")]
         public async Task<IActionResult> SendFile([FromBody] Revision revision){
             
-            string path;
-            
-            // Verifica se o arquivo é público 
-            if(revision.isPublic)
-                path = Path.Combine(_repository, revision.fileName);
-            else
-                path = Path.Combine(_repository, revision.userName, revision.fileName);
+            string path = Revision.GetFileServerPath(revision);
             
             // Verifica se o diretório Existe
             if(!Directory.Exists(path))
@@ -36,9 +43,13 @@ namespace UTFBox_Server.Controllers
             
             await _hubContext.Clients.All.SendAsync(revision.userName + 
                             " iniciou uma transferencia de arquivo: " + revision.fileName);
-            
-            //await System.IO.File.WriteAllBytesAsync(path, file);
 
+            if(!revision.fileData.Equals(null))
+                await System.IO.File.WriteAllBytesAsync(path, revision.fileData);
+            else
+                return BadRequest();
+            
+            revision.LastModificationDate = DateTime.Now;
             await _hubContext.Clients.All.SendAsync("Transferencia finalizada: " + revision.fileName);
 
             return Ok();
@@ -48,12 +59,7 @@ namespace UTFBox_Server.Controllers
         [Route("Delete")]
         public async Task<IActionResult> DeleteFile([FromBody] Revision revision)
         {
-            string path;
-
-            if(revision.isPublic)
-                path = Path.Combine(_repository, revision.fileName);
-            else
-                path = Path.Combine(_repository, revision.userName, revision.fileName);
+            string path = Revision.GetFileServerPath(revision);
 
             Directory.Delete(path);
             await _hubContext.Clients.All.SendAsync(revision.userName + " apagou um arquivo: " + revision.fileName);
@@ -66,12 +72,7 @@ namespace UTFBox_Server.Controllers
         [Route("Download")]
         public async Task<IActionResult> DownloadFile([FromBody] Revision revision)
         {
-            string path;
-
-            if(revision.isPublic)
-                path = Path.Combine(_repository, revision.fileName);
-            else
-                path = Path.Combine(_repository, revision.userName, revision.fileName);
+            string path = Revision.GetFileServerPath(revision);
 
             var response = await System.IO.File.ReadAllBytesAsync(path);
             await _hubContext.Clients.All.SendAsync(revision.userName + " realizou o download um arquivo: " + revision.fileName);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,11 +18,6 @@ namespace UTFBox_Server.Controllers
         public UserController(IHubContext<ServerHub> hubContext)
         {
             _hubContext = hubContext;
-
-            usersList = new List<User>();
-
-            usersList.Add(new User("Otavio", "hobbit", "123456"));
-            usersList.Add(new User("Rafael", "rafaop", "654321"));
         }
 
         [HttpPost]
@@ -43,10 +39,13 @@ namespace UTFBox_Server.Controllers
         [Route("SignIn")]
         public async Task<IActionResult> Create([FromBody] User user)
         {
+            if(usersList.Equals(null))
+                usersList = new List<User>();
+                
             if(!usersList.Contains(user)){
                 usersList.Add(user);
                 await _hubContext.Clients.All.SendAsync(user.Name + " criado com Sucesso");
-                return Created("", user.Name);
+                return Created("", user.Name);      
             }
 
             return Forbid();
