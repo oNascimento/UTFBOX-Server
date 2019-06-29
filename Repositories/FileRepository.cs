@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using UTFBox_Server.Models;
 
 namespace UTFBox_Server.Repositories
@@ -9,6 +11,12 @@ namespace UTFBox_Server.Repositories
     {
         private List<User> _users;
         private List<Revision> _revisions;
+
+        public FileRepository()
+        {
+            _users = new List<User>();
+            _revisions = new List<Revision>();
+        }
 
         public List<User> GetAllUsers()
         {
@@ -21,7 +29,7 @@ namespace UTFBox_Server.Repositories
 
             foreach (var item in _revisions)
             {
-                if(item.userName == user.Name)
+                if(item.userName == user.Name || item.isPublic)
                     revisions.Add(item);
             }
 
@@ -39,6 +47,28 @@ namespace UTFBox_Server.Repositories
             revision = _revisions.Where( r => r.fileName == revision.fileName).FirstOrDefault();
 
             receiver.SharedFolderFiles.Add(revision);
+        }
+
+        public async Task AddToRepository(Revision revision)
+        {
+            if(_revisions.Where(r => r.fileName == revision.fileName && r.userName == revision.userName).Any()){
+                var rev = _revisions.Where(r =>
+                             r.fileName == revision.fileName && r.userName == revision.userName).FirstOrDefault();
+                _revisions.Remove(rev);
+                _revisions.Add(revision);
+            }else
+                _revisions.Add(revision);
+        }
+
+        public void AddUser(User user)
+        {
+            _users.Add(user);
+        }
+
+        public async Task RemoveOfRepository(Revision revision)
+        {
+            var rev = _revisions.Where(r => r.fileName == revision.fileName && r.userName == revision.userName).FirstOrDefault();
+            _revisions.Remove(rev);
         }
     }
 }

@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using UTFBox_Server.Hubs;
 using UTFBox_Server.Models;
+using UTFBox_Server.Repositories;
 
 namespace UTFBox_Server.Controllers
 {
@@ -14,18 +14,20 @@ namespace UTFBox_Server.Controllers
     public class FileTransferController : Controller
     {
         private readonly IHubContext<ServerHub> _hubContext;
-        public FileTransferController(IHubContext<ServerHub> hubContext)
+        private readonly FileRepository _repo;
+        public FileTransferController(IHubContext<ServerHub> hubContext, FileRepository repo)
         {
             _hubContext = hubContext;
+            _repo = repo;
         }
-        
+
         [HttpGet]
         [Route("GetAll")]
         public async Task<List<Revision>> GetAll(User user)
         {
             var response = new List<Revision>();
 
-            
+            response = _repo.GetAllRevisionsByUser(user);
 
             await Task.Yield();
             return response;
@@ -37,10 +39,6 @@ namespace UTFBox_Server.Controllers
             
             string path = Revision.GetFileServerPath(revision);
             
-            // Verifica se o diretório Existe
-            if(!Directory.Exists(path))
-                Directory.CreateDirectory(path);
-            
             await _hubContext.Clients.All.SendAsync(revision.userName + 
                             " iniciou uma transferencia de arquivo: " + revision.fileName);
 
@@ -50,6 +48,7 @@ namespace UTFBox_Server.Controllers
                 return BadRequest();
             
             revision.LastModificationDate = DateTime.Now;
+            await _repo.AddToRepository(revision);
             await _hubContext.Clients.All.SendAsync("Transferencia finalizada: " + revision.fileName);
 
             return Ok();
@@ -61,8 +60,9 @@ namespace UTFBox_Server.Controllers
         {
             string path = Revision.GetFileServerPath(revision);
 
-            Directory.Delete(path);
+            System.IO.File.Delete(path);
             await _hubContext.Clients.All.SendAsync(revision.userName + " apagou um arquivo: " + revision.fileName);
+            await _repo.RemoveOfRepository(revision);
 
             await Task.Yield();
             return Ok();
@@ -79,6 +79,16 @@ namespace UTFBox_Server.Controllers
             
             await Task.Yield();
             return new FileContentResult(response ,"application/octet-stream");
+        }
+
+        [HttpPost]
+        [Route("Share")]
+        public async Task<IActionResult> ShareFile([FromBody] Revision revision, User receiver)
+        {
+            _repo.ShareRevision(receiver, revision);
+            
+            await Task.Yield();
+            return Created("", null);
         }
     }
 }

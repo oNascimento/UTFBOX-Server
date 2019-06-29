@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using UTFBox_Server.Hubs;
+using UTFBox_Server.Repositories;
 
 namespace UTFBox_Server
 {
@@ -29,6 +30,9 @@ namespace UTFBox_Server
             });
 
             services.AddSignalR();
+            new FileRepository();
+            
+            services.AddSingleton<FileRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

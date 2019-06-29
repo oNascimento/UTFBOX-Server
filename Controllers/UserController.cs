@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using UTFBox_Server.Hubs;
 using UTFBox_Server.Models;
+using UTFBox_Server.Repositories;
 
 namespace UTFBox_Server.Controllers
 {
@@ -14,17 +15,18 @@ namespace UTFBox_Server.Controllers
     public class UserController: Controller
     {
         private readonly IHubContext<ServerHub> _hubContext;
-        private List<User> usersList; 
-        public UserController(IHubContext<ServerHub> hubContext)
+        private readonly FileRepository _repo;
+        public UserController(IHubContext<ServerHub> hubContext, FileRepository repo)
         {
             _hubContext = hubContext;
+            _repo = repo;
         }
 
         [HttpPost]
         [Route("login")]
         public async Task<IActionResult> Login([FromBody]User user)
         {
-            
+            var usersList = _repo.GetAllUsers();
             if(usersList.Where(u => u.UserName == user.UserName && u.Password == user.Password).Any()){
 
                 var loggedUser = usersList.Where(u => u.UserName == user.UserName && u.Password == user.Password).FirstOrDefault();
@@ -39,16 +41,26 @@ namespace UTFBox_Server.Controllers
         [Route("SignIn")]
         public async Task<IActionResult> Create([FromBody] User user)
         {
+            var usersList = _repo.GetAllUsers();
+
             if(usersList.Equals(null))
                 usersList = new List<User>();
-                
+
             if(!usersList.Contains(user)){
-                usersList.Add(user);
+                _repo.AddUser(user);
                 await _hubContext.Clients.All.SendAsync(user.Name + " criado com Sucesso");
                 return Created("", user.Name);      
             }
 
             return Forbid();
+        }
+
+        [HttpGet]
+        [Route("GetAll")]
+        public async Task<List<User>> GetAll()
+        {
+          await Task.Yield();
+          return _repo.GetAllUsers();
         }
     }
 }
