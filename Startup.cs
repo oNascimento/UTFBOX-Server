@@ -31,7 +31,7 @@ namespace UTFBox_Server
                 builder => {
                     builder.AllowAnyHeader().
                             AllowAnyOrigin().
-                            AllowAnyMethod().WithOrigins("http://localhost*");
+                            AllowAnyMethod();
                 }));
                 
             services.AddSignalR();
@@ -64,7 +64,7 @@ namespace UTFBox_Server
                 routes.MapHub<Hubs.ServerHub>("/Hub");
             });
             
-            app.UseCors();
+            app.UseCors("MyPolicy");
             app.UseMvc();
         }
     }
