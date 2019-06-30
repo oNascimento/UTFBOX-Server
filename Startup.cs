@@ -30,7 +30,8 @@ namespace UTFBox_Server
             services.AddCors(o => o.AddPolicy("MyPolicy",
                 builder => {
                     builder.AllowAnyHeader().
-                            AllowAnyOrigin();
+                            AllowAnyOrigin().
+                            AllowAnyMethod().WithOrigins("http://localhost*");
                 }));
                 
             services.AddSignalR();
