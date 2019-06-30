@@ -63,6 +63,7 @@ namespace UTFBox_Server
                 routes.MapHub<Hubs.ServerHub>("/Hub");
             });
             
+            app.UseCors();
             app.UseMvc();
         }
     }
