@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using UTFBox_Server.Hubs;
@@ -11,6 +12,7 @@ using UTFBox_Server.Repositories;
 namespace UTFBox_Server.Controllers
 {
     [Controller]
+    [EnableCors("MyPolicy")]
     [Route("Transfer")]
     public class FileTransferController : Controller
     {

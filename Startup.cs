@@ -27,6 +27,12 @@ namespace UTFBox_Server
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddCors(o => o.AddPolicy("MyPolicy",
+                builder => {
+                    builder.AllowAnyHeader().
+                            AllowAnyOrigin();
+                }));
+                
             services.AddSignalR();
             new FileRepository();
 
