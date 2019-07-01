@@ -26,11 +26,13 @@ namespace UTFBox_Server.Controllers
 
         [HttpPost]
         [Route("GetAll")]
-        public async Task<List<Revision>> GetAll(User user)
+        public async Task<List<Revision>> GetAll([FromBody] User user)
         {
-            var response = new List<Revision>();
-
-            response = _repo.GetAllRevisionsByUser(user);
+            var _user = new User{
+                UserName = user.UserName
+            };
+            
+            var response = _repo.GetAllRevisionsByUser(_user);
 
             await Task.Yield();
             return response;
