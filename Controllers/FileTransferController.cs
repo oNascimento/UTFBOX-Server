@@ -24,7 +24,7 @@ namespace UTFBox_Server.Controllers
             _repo = repo;
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("GetAll")]
         public async Task<List<Revision>> GetAll(User user)
         {
@@ -74,7 +74,7 @@ namespace UTFBox_Server.Controllers
             return Ok();
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("Download")]
         public async Task<IActionResult> DownloadFile([FromBody] Revision revision)
         {

@@ -15,7 +15,7 @@ namespace UTFBox_Server.Models
 
 
         public static string GetFileServerPath(Revision revision){
-            const string _repository = "./Repository";
+            const string _repository = @"C:\Repository";
             string path;
 
             if(revision.isPublic)
