@@ -28,3 +28,33 @@
 /home/onascimento/DotnetProjects/UTFBox-Server/obj/Debug/netcoreapp2.2/UTFBox-Server.dll
 /home/onascimento/DotnetProjects/UTFBox-Server/obj/Debug/netcoreapp2.2/UTFBox-Server.pdb
 /home/onascimento/DotnetProjects/UTFBox-Server/obj/Debug/netcoreapp2.2/UTFBox-Server.csproj.CopyComplete
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\bin\Debug\netcoreapp2.2\UTFBox-Server.deps.json
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\bin\Debug\netcoreapp2.2\UTFBox-Server.runtimeconfig.json
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\bin\Debug\netcoreapp2.2\UTFBox-Server.runtimeconfig.dev.json
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\bin\Debug\netcoreapp2.2\UTFBox-Server.dll
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\bin\Debug\netcoreapp2.2\UTFBox-Server.pdb
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\bin\Debug\netcoreapp2.2\UTFBox-Server.Views.dll
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\bin\Debug\netcoreapp2.2\UTFBox-Server.Views.pdb
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\obj\Debug\netcoreapp2.2\UTFBox-Server.csprojAssemblyReference.cache
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\obj\Debug\netcoreapp2.2\UTFBox-Server.csproj.CoreCompileInputs.cache
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\obj\Debug\netcoreapp2.2\UTFBox-Server.RazorAssemblyInfo.cache
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\obj\Debug\netcoreapp2.2\UTFBox-Server.RazorAssemblyInfo.cs
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\obj\Debug\netcoreapp2.2\UTFBox-Server.AssemblyInfoInputs.cache
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\obj\Debug\netcoreapp2.2\UTFBox-Server.AssemblyInfo.cs
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\obj\Debug\netcoreapp2.2\UTFBox-Server.TagHelpers.input.cache
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\obj\Debug\netcoreapp2.2\UTFBox-Server.TagHelpers.output.cache
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\obj\Debug\netcoreapp2.2\UTFBox-Server.RazorCoreGenerate.cache
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\obj\Debug\netcoreapp2.2\Razor\Pages\Error.g.cshtml.cs
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\obj\Debug\netcoreapp2.2\Razor\Pages\Index.g.cshtml.cs
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\obj\Debug\netcoreapp2.2\Razor\Pages\Privacy.g.cshtml.cs
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\obj\Debug\netcoreapp2.2\Razor\Pages\Shared\_CookieConsentPartial.g.cshtml.cs
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\obj\Debug\netcoreapp2.2\Razor\Pages\Shared\_Layout.g.cshtml.cs
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\obj\Debug\netcoreapp2.2\Razor\Pages\Shared\_ValidationScriptsPartial.g.cshtml.cs
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\obj\Debug\netcoreapp2.2\Razor\Pages\_ViewImports.g.cshtml.cs
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\obj\Debug\netcoreapp2.2\Razor\Pages\_ViewStart.g.cshtml.cs
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\obj\Debug\netcoreapp2.2\UTFBox-Server.RazorTargetAssemblyInfo.cache
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\obj\Debug\netcoreapp2.2\UTFBox-Server.RazorTargetAssemblyInfo.cs
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\obj\Debug\netcoreapp2.2\UTFBox-Server.Views.pdb
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\obj\Debug\netcoreapp2.2\UTFBox-Server.dll
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\obj\Debug\netcoreapp2.2\UTFBox-Server.pdb
+C:\Users\andre\Documents\Facu - UTFPR\Sistemas Distribuidos\UTFBox\UTFBOX-Server\obj\Debug\netcoreapp2.2\UTFBox-Server.csproj.CopyComplete

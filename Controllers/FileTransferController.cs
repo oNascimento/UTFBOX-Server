@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -28,11 +29,7 @@ namespace UTFBox_Server.Controllers
         [Route("GetAll")]
         public async Task<List<Revision>> GetAll([FromBody] User user)
         {
-            var _user = new User{
-                UserName = user.UserName
-            };
-            
-            var response = _repo.GetAllRevisionsByUser(_user);
+            var response = _repo.GetAllRevisionsByUser(user);
 
             await Task.Yield();
             return response;
@@ -50,12 +47,14 @@ namespace UTFBox_Server.Controllers
             try{
                 var encodedBytes = Convert.FromBase64String(
                     Convert.ToBase64String(System.Text.Encoding.Unicode.GetBytes(revision.fileData)));
+                    
                 await System.IO.File.WriteAllBytesAsync(path, encodedBytes);
             }catch(Exception e){
                 return BadRequest("Não foi possivel criar seu arquivo, seu animal");
             }
 
-            revision.LastModificationDate = DateTime.Now;
+            revision.LastModificationDate = DateTime.Now.ToString();
+
             await _repo.AddToRepository(revision);
             await _hubContext.Clients.All.SendAsync("Transferencia finalizada: " + revision.fileName);
 
@@ -82,11 +81,14 @@ namespace UTFBox_Server.Controllers
         {
             string path = Revision.GetFileServerPath(revision);
 
-            var response = await System.IO.File.ReadAllBytesAsync(path);
-            await _hubContext.Clients.All.SendAsync(revision.userName + " realizou o download um arquivo: " + revision.fileName);
+            //var response = await System.IO.File.ReadAllBytesAsync(path);
+            await _hubContext.Clients.All.SendAsync( revision.userName + " realizou o download um arquivo: " + revision.fileName );
             
             await Task.Yield();
-            return new FileContentResult(response ,"application/octet-stream");
+            //return new FileContentResult(response ,"application/octet-stream");
+
+            var stream = new FileStream(path, FileMode.OpenOrCreate);
+            return new FileStreamResult(stream, "appclication/octet-stream");
         }
 
         [HttpPost]

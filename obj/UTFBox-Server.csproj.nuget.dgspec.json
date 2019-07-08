@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "/home/onascimento/DotnetProjects/UTFBox-Server/UTFBox-Server.csproj": {}
+    "C:\\Users\\andre\\Documents\\Facu - UTFPR\\Sistemas Distribuidos\\UTFBox\\UTFBOX-Server\\UTFBox-Server.csproj": {}
   },
   "projects": {
-    "/home/onascimento/DotnetProjects/UTFBox-Server/UTFBox-Server.csproj": {
+    "C:\\Users\\andre\\Documents\\Facu - UTFPR\\Sistemas Distribuidos\\UTFBox\\UTFBOX-Server\\UTFBox-Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/onascimento/DotnetProjects/UTFBox-Server/UTFBox-Server.csproj",
+        "projectUniqueName": "C:\\Users\\andre\\Documents\\Facu - UTFPR\\Sistemas Distribuidos\\UTFBox\\UTFBOX-Server\\UTFBox-Server.csproj",
         "projectName": "UTFBox-Server",
-        "projectPath": "/home/onascimento/DotnetProjects/UTFBox-Server/UTFBox-Server.csproj",
-        "packagesPath": "/home/onascimento/.nuget/packages/",
-        "outputPath": "/home/onascimento/DotnetProjects/UTFBox-Server/obj/",
+        "projectPath": "C:\\Users\\andre\\Documents\\Facu - UTFPR\\Sistemas Distribuidos\\UTFBox\\UTFBOX-Server\\UTFBox-Server.csproj",
+        "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\andre\\Documents\\Facu - UTFPR\\Sistemas Distribuidos\\UTFBox\\UTFBOX-Server\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/home/onascimento/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
@@ -47,7 +47,7 @@
             },
             "Microsoft.AspNetCore.Cors": {
               "target": "Package",
-              "version": "(, )"
+              "version": "[2.2.0, )"
             },
             "Microsoft.AspNetCore.Razor.Design": {
               "suppressParent": "All",

@@ -26,16 +26,19 @@ namespace UTFBox_Server.Repositories
         public List<Revision> GetAllRevisionsByUser(User user)
         {
             var revisions = new List<Revision>();
+            
+            if(!_revisions.Any())
+                return revisions;
 
             foreach (var item in _revisions)
             {
-                if(item.userName == user.Name || item.isPublic)
+                if(item.userName == user.UserName || item.isPublic)
                     revisions.Add(item);
             }
 
             user = _users.Where(u => u.UserName == user.UserName).FirstOrDefault();
             
-            if(!user.SharedFolderFiles.Equals(null))
+            if(!user.SharedFolderFiles.Any())
                 revisions.AddRange(user.SharedFolderFiles);
 
             return revisions;
@@ -53,7 +56,7 @@ namespace UTFBox_Server.Repositories
 
         public async Task AddToRepository(Revision revision)
         {
-            if(_revisions.Where(r => r.fileName == revision.fileName && r.userName == revision.userName).Any()){
+            if(_revisions.Where(r => r.fileName == revision.fileName && r.userName == revision.userName).Any() || !_revisions.Any()){
                 var rev = _revisions.Where(r =>
                              r.fileName == revision.fileName && r.userName == revision.userName).FirstOrDefault();
                 _revisions.Remove(rev);
@@ -64,6 +67,7 @@ namespace UTFBox_Server.Repositories
 
         public void AddUser(User user)
         {
+            user.SharedFolderFiles = new List<Revision>();
             _users.Add(user);
         }
 

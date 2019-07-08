@@ -9,9 +9,9 @@ namespace UTFBox_Server.Models
     {
         public string fileName;
         public string userName;
-        public string fileData = null;
-        public bool isPublic = false;
-        public DateTime LastModificationDate;
+        public string fileData;
+        public bool isPublic;
+        public string LastModificationDate;
 
 
         public static string GetFileServerPath(Revision revision){
